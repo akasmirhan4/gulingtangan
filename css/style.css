@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
 :root {
   --bg-color: #   ;
   --main-color: #e2b714;
@@ -9,55 +11,56 @@
   --colorful-error-color: #ca4754;
   --colorful-error-extra-color: #7e2a33;
 }
-/*# sourceMappingURL=style.css.map */
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Lobster&display=swap');
-*{
-    background-color: #303136;
+* {
+  background-color: #303136;
 }
 
-h1{
-    font-family: "Lobster", sans-serif;
-    font-size: 50px;
-    display: flex;
-    padding: 15px;
-    justify-content: center;
-    color: #7efd07;
-
+h1 {
+  font-family: "Lobster", sans-serif;
+  font-size: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 15px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: #7efd07;
 }
 
 nav {
-    display: flex;
-    padding: 0;
-    justify-content: center;
-
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
-
 
 li, a {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 500;
-    font-size: 16px;
-    color: #edf0f1;
-    text-decoration: none;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #edf0f1;
+  text-decoration: none;
 }
 
-
-
 .nav_links {
-    list-style: none;
+  list-style: none;
 }
 
 .nav_links li {
-    display: inline-block;
-    padding: 0px 25px;
+  display: inline-block;
+  padding: 0px 25px;
 }
 
 .nav_links li a {
-    transition: all 0.3s ease 0s;
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
 }
 
 .nav_links li a:hover {
-    color: #000000;
+  color: #000000;
 }
-
+/*# sourceMappingURL=style.css.map */
