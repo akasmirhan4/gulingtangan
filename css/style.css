@@ -1,12 +1,7 @@
-<<<<<<< HEAD
-:root {
-  --bg-color: #323437;
-=======
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
 :root {
   --bg-color: #   ;
->>>>>>> ad7ad6787a40c55e929820078b20bbfdc765b24b
   --main-color: #e2b714;
   --caret-color: #e2b714;
   --sub-color: #646669;
@@ -16,8 +11,6 @@
   --colorful-error-color: #ca4754;
   --colorful-error-extra-color: #7e2a33;
 }
-<<<<<<< HEAD
-=======
 * {
   background-color: #303136;
 }
@@ -70,5 +63,4 @@ li, a {
 .nav_links li a:hover {
   color: #000000;
 }
->>>>>>> ad7ad6787a40c55e929820078b20bbfdc765b24b
 /*# sourceMappingURL=style.css.map */
