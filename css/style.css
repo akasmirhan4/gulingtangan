@@ -1,5 +1,12 @@
+<<<<<<< HEAD
 :root {
   --bg-color: #323437;
+=======
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
+:root {
+  --bg-color: #   ;
+>>>>>>> ad7ad6787a40c55e929820078b20bbfdc765b24b
   --main-color: #e2b714;
   --caret-color: #e2b714;
   --sub-color: #646669;
@@ -9,4 +16,59 @@
   --colorful-error-color: #ca4754;
   --colorful-error-extra-color: #7e2a33;
 }
+<<<<<<< HEAD
+=======
+* {
+  background-color: #303136;
+}
+
+h1 {
+  font-family: "Lobster", sans-serif;
+  font-size: 50px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 15px;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  color: #7efd07;
+}
+
+nav {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  padding: 0;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+li, a {
+  font-family: "Montserrat", sans-serif;
+  font-weight: 500;
+  font-size: 16px;
+  color: #edf0f1;
+  text-decoration: none;
+}
+
+.nav_links {
+  list-style: none;
+}
+
+.nav_links li {
+  display: inline-block;
+  padding: 0px 25px;
+}
+
+.nav_links li a {
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+
+.nav_links li a:hover {
+  color: #000000;
+}
+>>>>>>> ad7ad6787a40c55e929820078b20bbfdc765b24b
 /*# sourceMappingURL=style.css.map */
