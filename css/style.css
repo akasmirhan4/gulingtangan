@@ -1,12 +1,7 @@
-<<<<<<< HEAD
-:root {
-  --bg-color: #323437;
-=======
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
 :root {
-  --bg-color: #   ;
->>>>>>> ad7ad6787a40c55e929820078b20bbfdc765b24b
+  --bg-color: #323437;
   --main-color: #e2b714;
   --caret-color: #e2b714;
   --sub-color: #646669;
@@ -16,22 +11,20 @@
   --colorful-error-color: #ca4754;
   --colorful-error-extra-color: #7e2a33;
 }
-<<<<<<< HEAD
-=======
-* {
+html {
+  font-size: 12px;
+}
+
+body {
   background-color: #303136;
+  padding: 0;
+  margin: 0;
 }
 
 h1 {
   font-family: "Lobster", sans-serif;
-  font-size: 50px;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  padding: 15px;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  font-size: 2rem;
+  text-align: center;
   color: #7efd07;
 }
 
@@ -39,18 +32,33 @@ nav {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  padding: 0;
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
 }
 
 li, a {
   font-family: "Montserrat", sans-serif;
   font-weight: 500;
-  font-size: 16px;
+  font-size: 0.6rem;
   color: #edf0f1;
   text-decoration: none;
+}
+
+.left, .right {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -webkit-box-flex: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
 }
 
 .nav_links {
@@ -58,8 +66,8 @@ li, a {
 }
 
 .nav_links li {
-  display: inline-block;
-  padding: 0px 25px;
+  padding: 0 1em;
+  margin: auto;
 }
 
 .nav_links li a {
@@ -70,5 +78,4 @@ li, a {
 .nav_links li a:hover {
   color: #000000;
 }
->>>>>>> ad7ad6787a40c55e929820078b20bbfdc765b24b
 /*# sourceMappingURL=style.css.map */

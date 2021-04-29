@@ -15,46 +15,51 @@
 }
 
 /*# sourceMappingURL=style.css.map */
-
-*{
+html{
+    font-size: 12px;
+}
+body{
     background-color: #303136;
+    padding: 0;
+    margin: 0;
 }
 
 h1{
     font-family: "Lobster", sans-serif;
-    font-size: 50px;
-    display: flex;
-    padding: 15px;
-    justify-content: center;
+    font-size: 2rem;
+    text-align: center;
     color: #7efd07;
-
 }
 
 nav {
     display: flex;
-    padding: 0;
     justify-content: center;
-
+    align-content: center;
 }
 
 
 li, a {
     font-family: "Montserrat", sans-serif;
     font-weight: 500;
-    font-size: 16px;
+    font-size: 0.6rem;
     color: #edf0f1;
     text-decoration: none;
 }
 
-
+.left, .right{
+    display: flex;
+    justify-content: center;
+    align-content: center;
+    flex-grow: 0;
+}
 
 .nav_links {
     list-style: none;
 }
 
 .nav_links li {
-    display: inline-block;
-    padding: 0px 25px;
+    padding: 0 1em;
+    margin: auto;
 }
 
 .nav_links li a {
