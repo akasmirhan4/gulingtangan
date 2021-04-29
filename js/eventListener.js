@@ -40,3 +40,11 @@ keyToggle.addEventListener("click", function(){
         }
     }
 })
+
+//loader
+
+let loader = document.getElementById("loader");
+
+window.addEventListener("load", function(){
+    loader.classList.add("hidden");
+})
