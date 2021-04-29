@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
 :root {
-  --bg-color: #   ;
+  --bg-color: #323437;
   --main-color: #e2b714;
   --caret-color: #e2b714;
   --sub-color: #646669;
@@ -12,7 +12,7 @@
   --colorful-error-extra-color: #7e2a33;
 }
 * {
-  background-color: #303136;
+  background-color: var(--bg-color);
 }
 
 h1 {
@@ -33,9 +33,10 @@ nav {
   display: -ms-flexbox;
   display: flex;
   padding: 0;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
+  -webkit-box-pack: justify;
+      -ms-flex-pack: justify;
+          justify-content: space-between;
+  margin: 0 2em;
 }
 
 li, a {
@@ -62,5 +63,19 @@ li, a {
 
 .nav_links li a:hover {
   color: #000000;
+}
+
+.pots {
+  width: 10em;
+  height: 10em;
+}
+
+.pots-container {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
 }
 /*# sourceMappingURL=style.css.map */
