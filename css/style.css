@@ -138,6 +138,7 @@ main {
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color:white;
 }
 
 #loader img{
@@ -145,7 +146,7 @@ main {
 }
 
 #loader.hidden{
-  animation: fadeOut 1s;
+  animation: fadeOut 2s;
   animation-fill-mode: forwards;
 }
 
