@@ -6,13 +6,15 @@ let guling = document.querySelectorAll(".pots");
 
 //let keys = document.querySelectorAll(".key");
 
-let playlist = ["", "./assets/gulingtanga-notes/Db4.wav", "./assets/gulingtanga-notes/Eb4.wav", "", "./assets/gulingtanga-notes/Gb4.wav", "./assets/gulingtanga-notes/Ab4.wav", "./assets/gulingtanga-notes/Bb4.wav", "./assets/gulingtanga-notes/C4", "./assets/gulingtanga-notes/D4", "./assets/gulingtanga-notes/E4", "./assets/gulingtanga-notes/F4", "./assets/gulingtanga-notes/G4", "./assets/gulingtanga-notes/A5", "./assets/gulingtanga-notes/B5", "./assets/gulingtanga-notes/C5"];
+let playlist = new Array("", ".assets/gulingtangan-notes/Db4.wav", ".assets/gulingtangan-notes/Eb4.wav", "", ".assets/gulingtangan-notes/Gb4.wav", ".assets/gulingtangan-notes/Ab4.wav", ".assets/gulingtangan-notes/Bb4.wav", ".assets/gulingtangan-notes/C4.wav", ".assets/gulingtangan-notes/D4.wav", ".assets/gulingtangan-notes/E4.wav", ".assets/gulingtangan-notes/F4.wav", ".assets/gulingtangan-notes/G4.wav", ".assets/gulingtangan-notes/A5.wav", ".assets/gulingtangan-notes/B5.wav", ".assets/gulingtangan-notes/C5.wav");
+
+let notes=document.querySelectorAll(".notes");
 
 //gulingtangan onclick
 
 guling.forEach(function(gulingtangan){
     gulingtangan.addEventListener("click", function(){
-      console.log(gulingtangan);
+      gulingtangan.children[1].play();
     })
 })
 
@@ -20,12 +22,12 @@ guling.forEach(function(gulingtangan){
 
 document.addEventListener("keypress", logKey);
 
-let keyArray = ["", "1", "2", "", "7", "8", "9", "q", "w", "e", "r", "u", "i", "o", "p"];
+let keyArray = ["", "1", "2", "", "7", "8", "9", "", "q", "w", "e", "r", "u", "i", "o", "p"];
 
 function logKey(e){
     for(i=0; i<keyArray.length; i++){
         if(e.key === keyArray[i]){
-        console.log(playlist[i]);
+            notes[i].play();
         }
     }
 }
