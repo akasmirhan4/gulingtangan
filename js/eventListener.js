@@ -6,8 +6,6 @@ let guling = document.querySelectorAll(".pots");
 
 //let keys = document.querySelectorAll(".key");
 
-let playlist = new Array("", ".assets/gulingtangan-notes/Db4.wav", ".assets/gulingtangan-notes/Eb4.wav", "", ".assets/gulingtangan-notes/Gb4.wav", ".assets/gulingtangan-notes/Ab4.wav", ".assets/gulingtangan-notes/Bb4.wav", ".assets/gulingtangan-notes/C4.wav", ".assets/gulingtangan-notes/D4.wav", ".assets/gulingtangan-notes/E4.wav", ".assets/gulingtangan-notes/F4.wav", ".assets/gulingtangan-notes/G4.wav", ".assets/gulingtangan-notes/A5.wav", ".assets/gulingtangan-notes/B5.wav", ".assets/gulingtangan-notes/C5.wav");
-
 let notes=document.querySelectorAll(".notes");
 
 //gulingtangan onclick
