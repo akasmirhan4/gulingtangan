@@ -69,7 +69,7 @@ let notes=[
     ,
     {
         noteId: "C5",
-        note: "./assets/gulingtangan-notes/C4.wav"
+        note: "./assets/gulingtangan-notes/C5.wav"
     }
 
 ]
