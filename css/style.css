@@ -109,6 +109,10 @@ main {
 
 .pots:not(.empty) {
   cursor: pointer;
+  -webkit-user-select: none;
+     -moz-user-select: none;
+      -ms-user-select: none;
+          user-select: none;
 }
 
 .pots-container {
@@ -124,35 +128,48 @@ main {
   padding: 2em;
   background-color: var(--sub-color);
 }
-/*# sourceMappingURL=style.css.map */
 
 /*loader*/
-
-#loader{
+#loader {
   position: fixed;
   z-index: 99;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color:white;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
-#loader img{
+#loader img {
   width: 200px;
 }
 
-#loader.hidden{
-  animation: fadeOut 2s;
-  animation-fill-mode: forwards;
+#loader.hidden {
+  -webkit-animation: fadeOut 1s;
+          animation: fadeOut 1s;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
 }
 
-@keyframes fadeOut{
-  100%{
+@-webkit-keyframes fadeOut {
+  100% {
     opacity: 0;
     visibility: hidden;
   }
 }
+
+@keyframes fadeOut {
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+/*# sourceMappingURL=style.css.map */

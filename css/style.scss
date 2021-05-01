@@ -89,6 +89,7 @@ main {
 }
 .pots:not(.empty) {
   cursor: pointer;
+  user-select: none;
 }
 
 .pots-container {
