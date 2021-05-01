@@ -96,7 +96,7 @@ function playNote(note){
 
 document.addEventListener("keypress", logKey);
 
-let keyArray = ["1", "2", "7", "8", "9", "q", "w", "e", "r", "u", "i", "o", "p"];
+let keyArray = ["s", "d", "g", "h", "j", "z", "x", "c", "v", "b", "n", "m", ","];
 
 function logKey(e){
     for(i=0; i<keyArray.length; i++){
