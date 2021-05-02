@@ -7,22 +7,107 @@
     <title>Gulingtangan</title>
     <link rel="stylesheet" href="./css/style.css" />
   </head>
-  <body>
- <!--navbar-->
- <header>
-  <h1> Virtual Gulingtangan</h1>
 
-  <nav>
-      <ul class="nav_links">
+  <body>
+    <!--navbar-->
+    <header>
+      <nav>
+        <ul class="nav_links">
           <li><a href="#">Gulingtangan</a></li>
           <li><a href="#">Complete Set</a></li>
-          <li><a href="#">Beat Sequencer</a></li>                
+          <li><a href="#">Beat Sequencer</a></li>
+        </ul>
+        
+        <h1 id="title">Virtual Gulingtangan</h1>
+
+        <ul class="nav_links">
           <li><a href="#">Metronome</a></li>
           <li><a href="#">Songs</a></li>
-    </ul>
-  </nav>
-</header>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <div class="pots-container">
+        <div class="pots empty">
+        </div>
+        <div class="pots" id="Db4">
+          <img src="./assets/gulingTanganSingle.svg" alt="" srcset="" />
+        </div>
+        <div class="pots" id="Eb4">
+          <img src="./assets/gulingTanganSingle.svg" alt="" srcset="" />
+        </div>
+        <div class="pots empty">
+        </div>
+        <div class="pots" id="Gb4">
+          <img src="./assets/gulingTanganSingle.svg" alt="" srcset="" />
+        </div>
+        <div class="pots" id="Ab4">
+          <img src="./assets/gulingTanganSingle.svg" alt="" srcset="" />
+        </div>
+        <div class="pots" id="Bb4">
+          <img src="./assets/gulingTanganSingle.svg" alt="" srcset="" />
+        </div>
+        <div class="pots empty">
+        </div>
+      </div>
+      <div class="pots-container">
+        <div class="pots" id="C4">
+          <img src="./assets/gulingTanganSingle.svg" alt="" srcset="" />
+        </div>
+        <div class="pots" id="D4">
+          <img src="./assets/gulingTanganSingle.svg" alt="" srcset="" />
+        </div>
+        <div class="pots" id="E4">
+          <img src="./assets/gulingTanganSingle.svg" alt="" srcset="" />
+        </div>
+        <div class="pots" id="F4">
+          <img src="./assets/gulingTanganSingle.svg" alt="" srcset="" />
+        </div>
+        <div class="pots" id="G4">
+          <img src="./assets/gulingTanganSingle.svg" alt="" srcset="" />
+        </div>
+        <div class="pots" id="A4">
+          <img src="./assets/gulingTanganSingle.svg" alt="" srcset="" />
+        </div>
+        <div class="pots" id="B4">
+          <img src="./assets/gulingTanganSingle.svg" alt="" srcset="" />
+        </div>
+        <div class="pots" id="C5">
+          <img src="./assets/gulingTanganSingle.svg" alt="" srcset="" />
+        </div>
+      </div>
+    </main>
+
+    <div class="controlbar">
+      <nav>
+        <select name="instruments" id="instruments">
+          <option>Gulingtangan</option>
+          <option>Piano</option>
+        </select>
+
+        <div class="playback-panel">
+          <button><i class="fas fa-play-circle"></i></button>
+          <button><i class="fas fa-circle"></i></button>
+          <button><i class="fas fa-square"></i></button>
+        </div>
+
+        <div class="empty"></div>
+      </nav>
+    </div>
+
+    <div id="loader">
+
+      <img src="./assets/placeholder.gif" alt="loading">
+
+    </div>
 
   </body>
+
+  <script src="./js/eventListener.js"></script>
   <script src="./js/main.js"></script>
+  <script
+    src="https://kit.fontawesome.com/4d6d8d7695.js"
+    crossorigin="anonymous"
+  ></script>
 </html>
