@@ -25,7 +25,7 @@ guling.forEach(function (gulingtangan, index) {
 })
 
 function playNote(note) {
-    sampler.triggerAttackRelease(note, sustain);
+    gulingtangan.triggerAttackRelease(note, sustain);
 }
 
 //KEYBOARD KEYS EVENT LISTENER
