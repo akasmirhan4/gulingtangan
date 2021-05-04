@@ -17,12 +17,12 @@ let metronome = function () {
         let musicTime = position.split(':');
         if(currentMeasure != musicTime[0]){
             currentMeasure = musicTime[0];
-            tock.start();
-            console.log('tock');
-        }
-        else{
             tick.start();
             console.log('tick');
+        }
+        else{
+            tock.start();
+            console.log('tock');
         }
     }, "4n");
     // transport must be started before it starts invoking events
