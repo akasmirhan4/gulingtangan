@@ -1,7 +1,7 @@
 let currentMeasure = -1;
 
-const tick = new Tone.Player("../assets/tick.wav").toDestination();
-const tock = new Tone.Player("../assets/tock.wav").toDestination();
+const tick = new Tone.Player("./assets/tick.wav").toDestination();
+const tock = new Tone.Player("./assets/tock.wav").toDestination();
 
 
 const gulingtangan = new Tone.Sampler({
