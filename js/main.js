@@ -18,9 +18,11 @@ let metronome = function () {
         if(currentMeasure != musicTime[0]){
             currentMeasure = musicTime[0];
             tock.start();
+            console.log('tock');
         }
         else{
             tick.start();
+            console.log('tick');
         }
     }, "4n");
     // transport must be started before it starts invoking events
