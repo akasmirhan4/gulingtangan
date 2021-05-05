@@ -46,6 +46,7 @@ function logKey(e) {
             let note = keyNoteMap[e.key][0];
             playNote(note);
             keyNoteMap[e.key][1] = true;
+            document.getElementById(note).classList.add("darken");
         }
     }
 }
@@ -54,7 +55,9 @@ document.addEventListener("keyup", logKeyPressed);
 function logKeyPressed(e) {
     if (keyNoteMap[e.key][0]) {
         if (keyNoteMap[e.key][1]) {
+            let note = keyNoteMap[e.key][0];
             keyNoteMap[e.key][1] = false;
+            document.getElementById(note).classList.remove("darken");
         }
     }
 }
