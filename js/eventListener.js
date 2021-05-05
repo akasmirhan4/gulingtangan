@@ -74,23 +74,42 @@ for (let i = 0; i < rightNavElements.length; i++) {
     // Initialise attribute wasChecked
     rightNavElements[i].setAttribute("wasChecked", false);
 
-    // Allow uncheck on right nav_links
     rightNavElements[i].addEventListener('click', function () {
+        // Allow uncheck on right nav_links
         let currentWasChecked = this.wasChecked;
         for (let i = 0; i < rightNavElements.length; i++) {
             let element = rightNavElements[i];
             if (element.wasChecked) {
                 element.wasChecked = false;
             }
+            let className = element.value;
+            document.querySelector('.sidebar.' + className).style.display = 'none';
         }
         if (currentWasChecked) {
             this.checked = false;
             this.wasChecked = false;
+            let className = this.value;
+            document.querySelector('.sidebar.' + className).style.display = 'none';
         }
         else {
             this.checked = true;
             this.wasChecked = true;
+            let className = this.value;
+            document.querySelector('.sidebar.' + className).style.display = 'block';
         }
+
+
+
     });
 }
 
+function uncheckRightNavLinks() {
+    for (let i = 0; i < rightNavElements.length; i++) {
+        let element = rightNavElements[i];
+        element.wasChecked = false;
+        element.checked = false;
+    }
+}
+
+function showSideBar() {
+}
