@@ -52,3 +52,31 @@ let loader = document.getElementById("loader");
 window.addEventListener("load", function () {
     loader.classList.add("hidden");
 })
+
+
+let rightNavElements = document.querySelectorAll(".nav_links.right input[type=radio]");
+for(let i = 0; i < rightNavElements.length; i++){
+
+    // Initialise attribute wasChecked
+    rightNavElements[i].setAttribute("wasChecked",false);
+
+    // Allow uncheck on right nav_links
+    rightNavElements[i].addEventListener('click',function(){
+        let currentWasChecked = this.wasChecked;
+        for(let i = 0; i < rightNavElements.length; i++){
+            let element = rightNavElements[i];
+            if(element.wasChecked){
+                element.wasChecked = false;
+            }
+        }
+        if(currentWasChecked){
+            this.checked = false;
+            this.wasChecked = false;
+        }
+        else{
+            this.checked = true;
+            this.wasChecked = true;
+        }
+    });
+}
+

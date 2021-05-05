@@ -36,6 +36,12 @@ body {
           flex-direction: column;
 }
 
+header {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+}
+
 #title {
   font-size: 1.6rem;
   font-weight: bolder;
@@ -77,6 +83,14 @@ a {
           flex-grow: 0;
 }
 
+/* HIDE RADIO */
+[type=radio] {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
 .nav_links {
   list-style: none;
   display: -webkit-box;
@@ -87,12 +101,9 @@ a {
           justify-content: space-between;
 }
 
-.nav_links li {
-  padding: 0 1em;
-  margin: auto;
-}
-
-.nav_links li a {
+.nav_links label {
+  padding: 1em;
+  margin: 1em auto;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -101,18 +112,15 @@ a {
       -ms-flex-direction: column;
           flex-direction: column;
   text-align: center;
+  cursor: pointer;
 }
 
-.nav_links li a:hover {
+.nav_links label:hover, .nav_links [type=radio]:checked ~ p {
   color: var(--caret-color);
 }
 
-.nav_links li a:hover .icons {
+.nav_links label:hover .icons, .nav_links [type=radio]:checked ~ .icons {
   fill: var(--caret-color);
-}
-
-.nav_links li a[active=true] {
-  text-decoration: underline;
 }
 
 .icons {
@@ -209,38 +217,48 @@ main {
 }
 
 @-webkit-keyframes shake {
-  10%, 90% {
+  10%,
+  90% {
     -webkit-transform: translate3d(-1px, 0, 0);
             transform: translate3d(-1px, 0, 0);
   }
-  20%, 80% {
+  20%,
+  80% {
     -webkit-transform: translate3d(1px, 0, 0);
             transform: translate3d(1px, 0, 0);
   }
-  30%, 50%, 70% {
+  30%,
+  50%,
+  70% {
     -webkit-transform: translate3d(-1px, 0, 0);
             transform: translate3d(-1px, 0, 0);
   }
-  40%, 60% {
+  40%,
+  60% {
     -webkit-transform: translate3d(1px, 0, 0);
             transform: translate3d(1px, 0, 0);
   }
 }
 
 @keyframes shake {
-  10%, 90% {
+  10%,
+  90% {
     -webkit-transform: translate3d(-1px, 0, 0);
             transform: translate3d(-1px, 0, 0);
   }
-  20%, 80% {
+  20%,
+  80% {
     -webkit-transform: translate3d(1px, 0, 0);
             transform: translate3d(1px, 0, 0);
   }
-  30%, 50%, 70% {
+  30%,
+  50%,
+  70% {
     -webkit-transform: translate3d(-1px, 0, 0);
             transform: translate3d(-1px, 0, 0);
   }
-  40%, 60% {
+  40%,
+  60% {
     -webkit-transform: translate3d(1px, 0, 0);
             transform: translate3d(1px, 0, 0);
   }

@@ -30,4 +30,4 @@ let metronome = function () {
     Tone.start();
 };
 
-document.getElementById('metronone-play').onclick = metronome;
+// document.getElementById('metronone-play').onclick = metronome;
