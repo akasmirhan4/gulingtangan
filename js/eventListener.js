@@ -12,8 +12,8 @@ let keyNoteMap = new Object;
 guling.forEach(function (gulingtangan, index) {
     let note = gulingtangan.id;
 
-    // keyNoteMap FOR MAPPING KEYBOARD KEYS TO ITS NOTE
-    keyNoteMap[keyArray[index]] = note;
+    // keyNoteMap FOR MAPPING KEYBOARD KEYS TO ITS NOTE, second index indicate isKeyPressed (restrict user from holding the key button)
+    keyNoteMap[keyArray[index]] = [note, false];
 
     // urlsList FOR MAPPING NOTE TO ITS URL
     urlsList[note] = note + FILE_EXTENSION;
@@ -39,14 +39,25 @@ function playNote(note) {
 }
 
 //KEYBOARD KEYS EVENT LISTENER
-document.addEventListener("keypress", logKey);
+document.addEventListener("keydown", logKey);
 function logKey(e) {
-    if (keyNoteMap[e.key]) {
-        let note = keyNoteMap[e.key];
-        playNote(note);
+    if (keyNoteMap[e.key][0]) {
+        if (!keyNoteMap[e.key][1]) {
+            let note = keyNoteMap[e.key][0];
+            playNote(note);
+            keyNoteMap[e.key][1] = true;
+        }
     }
 }
 
+document.addEventListener("keyup", logKeyPressed);
+function logKeyPressed(e) {
+    if (keyNoteMap[e.key][0]) {
+        if (keyNoteMap[e.key][1]) {
+            keyNoteMap[e.key][1] = false;
+        }
+    }
+}
 let loader = document.getElementById("loader");
 
 window.addEventListener("load", function () {
@@ -55,25 +66,25 @@ window.addEventListener("load", function () {
 
 
 let rightNavElements = document.querySelectorAll(".nav_links.right input[type=radio]");
-for(let i = 0; i < rightNavElements.length; i++){
+for (let i = 0; i < rightNavElements.length; i++) {
 
     // Initialise attribute wasChecked
-    rightNavElements[i].setAttribute("wasChecked",false);
+    rightNavElements[i].setAttribute("wasChecked", false);
 
     // Allow uncheck on right nav_links
-    rightNavElements[i].addEventListener('click',function(){
+    rightNavElements[i].addEventListener('click', function () {
         let currentWasChecked = this.wasChecked;
-        for(let i = 0; i < rightNavElements.length; i++){
+        for (let i = 0; i < rightNavElements.length; i++) {
             let element = rightNavElements[i];
-            if(element.wasChecked){
+            if (element.wasChecked) {
                 element.wasChecked = false;
             }
         }
-        if(currentWasChecked){
+        if (currentWasChecked) {
             this.checked = false;
             this.wasChecked = false;
         }
-        else{
+        else {
             this.checked = true;
             this.wasChecked = true;
         }
