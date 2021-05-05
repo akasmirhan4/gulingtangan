@@ -18,6 +18,10 @@ html {
   font-size: 16px;
 }
 
+*{
+  transition: all 0.1s ease-out;
+}
+
 body {
   font-family: Montserrat;
   padding: 0;
@@ -72,7 +76,6 @@ a {
 }
 
 .nav_links li a {
-  transition: all 0.3s ease 0s;
   display:flex;
   flex-direction: column;
   text-align: center;
@@ -80,6 +83,9 @@ a {
 
 .nav_links li a:hover {
   color: var(--caret-color);
+}
+.nav_links li a:hover .icons{
+  fill: var(--caret-color);
 }
 
 .nav_links li a[active = true] {
@@ -92,11 +98,6 @@ a {
   color: var(--sub-color);
   fill: var(--sub-color);
   margin: auto;
-  transition: all 0.3s ease 0s;
-}
-
-.icons:hover{
-  fill: var(--caret-color);
 }
 
 main {
@@ -111,7 +112,6 @@ main {
   cursor: pointer;
   user-select: none;
 }
-
 .pots-container {
   display: flex;
   justify-content: center;
@@ -149,5 +149,30 @@ main {
   100%{
     opacity: 0;
     visibility: hidden;
+  }
+}
+
+.shake{
+  animation: shake 0.5s forwards;
+}
+.darken{
+  filter: brightness(0.8);
+}
+
+@keyframes shake {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(1px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-1px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(1px, 0, 0);
   }
 }

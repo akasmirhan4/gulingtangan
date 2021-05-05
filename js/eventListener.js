@@ -21,11 +21,21 @@ guling.forEach(function (gulingtangan, index) {
     //MOUSE CLICK EVENT LISTENER
     gulingtangan.addEventListener("mousedown", function () {
         playNote(note);
-    })
+        document.getElementById(note).classList.add("darken");
+    });
+    gulingtangan.addEventListener("mouseup", function () {
+        document.getElementById(note).classList.remove("darken");
+    });
 })
 
 function playNote(note) {
     gulingtangan.triggerAttackRelease(note, sustain);
+    // Add animation
+    let id = note;
+    document.getElementById(id).classList.remove("shake");
+    window.requestAnimationFrame(function () {
+        document.getElementById(id).classList.add("shake");
+    });
 }
 
 //KEYBOARD KEYS EVENT LISTENER
