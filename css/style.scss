@@ -41,9 +41,76 @@ body {
   margin: auto;
 }
 
+.select {
+  position: relative;
+  display: inline-block;
+  width: 20em;
+  margin: auto 0;
+}
+.select select {
+  font-family: inherit;
+  font-weight: bolder;
+  display: inline-block;
+  font-size: 1rem;
+  width: 100%;
+  cursor: pointer;
+  padding: 1em 2em;
+  outline: 0;
+  background: var(--text-color);
+  color: var(--bg-color);
+  appearance: none;
+}
+.select select::-ms-expand {
+  display: none;
+}
+.select select:hover,
+.select select:focus {
+  color: var(--bg-color);
+  background: var(--text-color);
+}
+.select select:disabled {
+  opacity: 0.5;
+  pointer-events: none;
+}
+.select select option{
+  font-weight: bolder;
+  appearance: none;
+  padding: 1em 2em;
+}
+.select_arrow {
+  position: absolute;
+  top: 1.5em;
+  right: 1em;
+  pointer-events: none;
+  border-style: solid;
+  border-width: 8px 5px 0px 5px;
+  border-color: #7b7b7b transparent transparent transparent;
+}
+.select select:hover ~ .select_arrow,
+.select select:focus ~ .select_arrow {
+  border-top-color: var(--bg-color);
+}
+
+button {
+  cursor: pointer;
+  background-color: unset;
+  outline: none;
+  padding: 1em 2em;
+  border: none;
+  color: var(--bg-color);
+}
+button:hover{
+  transform: scale(1.1);
+  transform-origin: center;
+  filter: brightness(1.2);
+}
+.record {
+  color: var(--colorful-error-color);
+}
+
 header {
   display: flex;
-  box-shadow: 4px 4px 6px rgba(0,0,0,0.2);
+  box-shadow: 4px 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 #title {
@@ -58,6 +125,7 @@ nav {
   display: flex;
   padding: 0 2em;
   justify-content: space-between;
+  align-content: center;
 }
 
 li,
@@ -137,6 +205,28 @@ main {
   padding: 2em;
   background-color: var(--sub-color);
 }
+.controlbar nav{
+  justify-content: s;
+}
+.right-col{
+  display: flex;
+}
+.playback-panel {
+  display: flex;
+  padding: 0 2em;
+}
+
+.timeline{
+  min-width: 6em;
+  text-align: center;
+  font-weight: bold;
+  background-color: var(--text-color);
+  border:rgba(0, 0, 0, 0.2) 1px solid;
+  color: var(--bg-color);
+  font-size: 1.5rem;
+  margin: auto;
+  padding: 0 2em;
+}
 
 .sidebar {
   display: none;
@@ -145,7 +235,7 @@ main {
   right: 0;
   top: 0;
   background-color: var(--sub-color);
-  box-shadow: inset 4px 4px 6px rgba(0,0,0,0.2);
+  box-shadow: inset 4px 4px 6px rgba(0, 0, 0, 0.2);
 }
 
 .sidebar > div {

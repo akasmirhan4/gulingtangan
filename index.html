@@ -346,12 +346,12 @@
       </div>
 
       <div class="sidebar metronome">
-        <div class="editKeyMap">Play / Pause</div>
-        <div class="showKeyMap">BPM</div>
+        <div class="play">Play / Pause</div>
+        <div class="bpm">BPM</div>
       </div>
       <div class="sidebar songs">
-        <div class="editKeyMap">Adai-adai</div>
-        <div class="showKeyMap">Megalovania</div>
+        <div>Adai-adai</div>
+        <div>Megalovania</div>
       </div>
       <div class="sidebar settings">
         <div class="editKeyMap">Edit Keyboard Binding</div>
@@ -361,18 +361,24 @@
 
     <div class="controlbar">
       <nav>
-        <select name="instruments" id="instruments">
-          <option>Gulingtangan</option>
-          <option>Piano</option>
-        </select>
-
-        <div class="playback-panel">
-          <button id="play"><i class="fas fa-play-circle"></i></button>
-          <button><i class="fas fa-circle"></i></button>
-          <button><i class="fas fa-square"></i></button>
+        <div class="select">
+          <select name="instruments" id="instruments">
+            <option>Gulingtangan</option>
+            <option>Piano</option>
+            <option>E. Piano</option>
+          </select>
+          <div class="select_arrow"></div>
         </div>
+        <p class="disclaimer">"not a nipple"</p>
 
-        <div class="empty"></div>
+        <div class="right-col">
+          <div class="playback-panel">
+            <button class="record"><i class="fas fa-2x fa-circle"></i></button>
+            <button class="play"><i class="fas fa-3x fa-play"></i></button>
+            <button class="stop"><i class="fas fa-2x fa-square"></i></button>
+          </div>
+          <div class="timeline"><p class="timeline-value">00:00:00</p></div>
+        </div>
       </nav>
     </div>
 
