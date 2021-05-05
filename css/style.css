@@ -1,5 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Lobster&display=swap");
 :root {
   --bg-color: #323437;
   --main-color: #e2b714;
@@ -16,6 +15,7 @@ html {
 }
 
 body {
+  font-family: Montserrat;
   padding: 0;
   margin: 0;
   width: 100vw;
@@ -32,9 +32,9 @@ body {
 }
 
 #title {
-  font-family: "Lobster", sans-serif;
-  font-size: 2rem;
-  margin-left: -2em;
+  font-size: 1.6rem;
+  font-weight: bolder;
+  margin: auto;
   text-align: center;
   color: var(--main-color);
 }
@@ -51,7 +51,6 @@ nav {
 
 li,
 a {
-  font-family: "Montserrat", sans-serif;
   font-weight: 500;
   font-size: 0.8rem;
   color: var(--text-color);
@@ -91,10 +90,35 @@ a {
 .nav_links li a {
   -webkit-transition: all 0.3s ease 0s;
   transition: all 0.3s ease 0s;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  text-align: center;
 }
 
 .nav_links li a:hover {
   color: var(--caret-color);
+}
+
+.nav_links li a[active=true] {
+  text-decoration: underline;
+}
+
+.icons {
+  height: 4em;
+  color: var(--sub-color);
+  fill: var(--sub-color);
+  margin: auto;
+  -webkit-transition: all 0.3s ease 0s;
+  transition: all 0.3s ease 0s;
+}
+
+.icons:hover {
+  fill: var(--caret-color);
 }
 
 main {
