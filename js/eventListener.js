@@ -29,6 +29,8 @@ document.addEventListener("mouseup", function () {
 });
 
 function playNote(note) {
+    // Get instrument
+    let instrument
     gulingtangan.triggerAttackRelease(note, sustain);
     // Add animation
     let id = note;
@@ -123,3 +125,19 @@ function hideLoader() {
     let loader = document.getElementById("loader");
     loader.classList.add("hidden");
 }
+
+
+
+startRecording = function () {
+    // PLAY TICK TOCKx3
+    //START THE CLOCK FROM THE CURRENT TIME
+    //ANY USER INPUT WILL BE MAPPED INTO AN ARRAY/OBJECT
+}
+
+playRecording = function(){
+    //START THE CLOCK FROM 0 to END
+    //EACH INTERVAL WITHIN THE ARRAY PLAY BACK AS NOTES
+    //AT END OF RECORDING STOP AND START BACK TO BEGINNGING BUT PAUSED
+}
+
+document.querySelector(".record").onclick = startRecording;
