@@ -3,9 +3,11 @@ let currentBeat = -1;
 
 //FLAGS
 let isKeyMapShown = false;
+let isKeyMapAreaShown = false;
 let isMetronomePlayed = false;
 let isPlayed = false;
 let isWindowLoaded = false;
+let bufferKeyMapFlag;
 
 //SETTINGS
 let MIN_BPM = 10;
@@ -113,19 +115,27 @@ let setBPM = function () {
 
 document.querySelector(".sidebar.metronome .bpm").onclick = setBPM;
 
-let toggleKeyMap = function () {
+function hideKeyMap(){
     let keyMapElements = document.querySelectorAll(".keyMap");
+    keyMapElements.forEach(function (element, index) {
+        element.style.display = "none";
+    });
+    isKeyMapShown = false;
+};
+function showKeyMap(){
+    let keyMapElements = document.querySelectorAll(".keyMap");
+    keyMapElements.forEach(function (element, index) {
+        element.style.display = "block";
+    });
+    isKeyMapShown = true;
+};
+
+let toggleKeyMap = function () {
     if (isKeyMapShown) {
-        keyMapElements.forEach(function (element, index) {
-            element.style.display = "none";
-        });
-        isKeyMapShown = false;
+        hideKeyMap();
     }
     else {
-        keyMapElements.forEach(function (element, index) {
-            element.style.display = "block";
-        });
-        isKeyMapShown = true;
+        showKeyMap();
     }
 }
 

@@ -128,16 +128,92 @@ function hideLoader() {
 
 
 
-startRecording = function () {
+let startRecording = function () {
     // PLAY TICK TOCKx3
-    //START THE CLOCK FROM THE CURRENT TIME
-    //ANY USER INPUT WILL BE MAPPED INTO AN ARRAY/OBJECT
+    //READ CURRENT TIME(MEASURE:BEAT:SIXTEENTH)
+    let currentBeat = -3;
+    let tickTock = setInterval(() => {
+        let measure = -1;
+        let beat = currentBeat;
+        let sixteenth = 0;
+        setTimeline(measure, beat, sixteenth);
+        if (currentBeat != -3) {
+            tock.start();
+        }
+        else {
+            tick.start();
+        }
+        currentBeat++;
+        if (currentBeat == 1) {
+            clearInterval(tickTock);
+            let position = Tone.Transport.position;
+            let musicTime = position.split(':');
+            let measure = parseInt(musicTime[0]);
+            let beat = parseInt(musicTime[1]);
+            let sixteenth = parseInt(musicTime[2]);
+            //START THE CLOCK FROM THE CURRENT TIME
+            setTimeline(measure, beat, sixteenth);
+            //ANY USER INPUT WILL BE MAPPED INTO AN ARRAY/OBJECT
+            
+        }
+    }, 60 / Tone.Transport.bpm.value * 1000);
 }
 
-playRecording = function(){
+let playRecording = function () {
     //START THE CLOCK FROM 0 to END
     //EACH INTERVAL WITHIN THE ARRAY PLAY BACK AS NOTES
     //AT END OF RECORDING STOP AND START BACK TO BEGINNGING BUT PAUSED
 }
 
+function setKeyMap(element) {
+    console.log(element);
+}
+
+
+function setKeyMapArea() {
+    guling.forEach(function (element, index) {
+        let keyAreaElement = document.createElement("div");
+        keyAreaElement.classList.add("keyMapArea");
+        keyAreaElement.style.display = "none";
+        element.appendChild(keyAreaElement);
+    });
+}
+setKeyMapArea();
+
+function showKeyMapArea() {
+    bufferKeyMapFlag = isKeyMapShown;
+    showKeyMap();
+    let keyAreaElements = document.querySelectorAll(".keyMapArea");
+    keyAreaElements.forEach((element, index) => {
+        isKeyMapAreaShown = true;
+        element.style.display = "block";
+    });
+}
+function hideKeyMapArea() {
+    let keyAreaElements = document.querySelectorAll(".keyMapArea");
+    keyAreaElements.forEach((element, index) => {
+        isKeyMapAreaShown = false;
+        element.style.display = "none";
+    });
+    if (!bufferKeyMapFlag) {
+        hideKeyMap();
+    }
+    isKeyMapShown = bufferKeyMapFlag;
+}
+
+let toggleKeyMapArea = function () {
+    let keyAreaElements = document.querySelectorAll(".keyMapArea");
+    keyAreaElements.forEach((element, index) => {
+        if (isKeyMapAreaShown) {
+            hideKeyMapArea();
+        }
+        else {
+            showKeyMapArea();
+        }
+    });
+}
 document.querySelector(".record").onclick = startRecording;
+document.querySelector(".editKeyMap").onclick = toggleKeyMapArea;
+document.querySelector(".keyMapArea").addEventListener("onClick", () => {
+    console.log(this);
+});
