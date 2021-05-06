@@ -4,26 +4,22 @@ let currentBeat = -1;
 //FLAGS
 let isKeyMapShown = false;
 let isMetronomePlayed = false;
+let isPlayed = false;
 
 //SETTINGS
 let MIN_BPM = 10;
 let MAX_BPM = 200;
+let TIMELINE_INTERVAL = "32n";
 
 //LOAD SOUNDS
 const tick = new Tone.Player("./assets/tick.wav").toDestination();
 const tock = new Tone.Player("./assets/tock.wav").toDestination();
 
-
-//LOAD GULINGTANGAN SOUND
-const gulingtangan = new Tone.Sampler({
-    urls: urlsList,
-    release: 1,
-    baseUrl: PATH,
-}).toDestination();
-
-//REPEATED FUNCTION
+//REPEATED FUNCTION FOR TIMELINE
 Tone.Transport.scheduleRepeat((time) => {
     // use the callback time to schedule events
+
+    //READ CURRENT TIME(MEASURE:BEAT:SIXTEENTH)
     let position = Tone.Transport.position;
     let musicTime = position.split(':');
     let measure = parseInt(musicTime[0]);
@@ -32,34 +28,66 @@ Tone.Transport.scheduleRepeat((time) => {
     setTimeline(measure, beat, sixteenth);
 
     //MAKE TICK AND TOCK
-    if (currentMeasure != measure) {
-        currentMeasure = measure;
-        tick.start();
-        console.log('tick');
+    if (isMetronomePlayed) {
+        if (currentMeasure != measure) {
+            currentMeasure = measure;
+            tick.start();
+            console.log('tick');
+        }
+        else if (currentBeat != beat && beat != 0) {
+            currentBeat = beat;
+            tock.start();
+            console.log('tock');
+        }
     }
-    else if (currentBeat != beat && beat != 0) {
-        currentBeat = beat;
-        tock.start();
-        console.log('tock');
-    }
-}, "32n");
+}, TIMELINE_INTERVAL);
 
 let metronome = function () {
     // transport must be started before it starts invoking events
     if (!isMetronomePlayed) {
-        Tone.Transport.start();
+        document.querySelector(".sidebar.metronome .toggle").innerText = "Off";
         isMetronomePlayed = true;
     }
     else {
         isMetronomePlayed = false;
-        Tone.Transport.pause();
+        document.querySelector(".sidebar.metronome .toggle").innerText = "On";
     }
 
 };
 
-addKeyMap();
+let togglePlayTimeline = function () {
+    if (!isPlayed) {
+        let playElement = document.querySelector(".fa-play")
+        playElement.classList.remove("fa-play");
+        playElement.classList.add("fa-pause");
+        isPlayed = true;
+        Tone.Transport.start();
+    }
+    else {
+        let playElement = document.querySelector(".fa-pause")
+        playElement.classList.remove("fa-pause");
+        playElement.classList.add("fa-play");
+        isPlayed = false;
+        Tone.Transport.pause();
+    }
+}
 
-document.querySelector(".sidebar.metronome .play").onclick = metronome;
+let stopTimeline = function () {
+    if (isPlayed) {
+        let playElement = document.querySelector(".fa-pause")
+        playElement.classList.remove("fa-pause");
+        playElement.classList.add("fa-play");
+        isPlayed = false;
+    }
+    Tone.Transport.stop();
+    setTimeline(0, 0, 0);
+};
+
+
+document.querySelector("button.play").onclick = togglePlayTimeline;
+document.querySelector("button.stop").onclick = stopTimeline;
+document.querySelector(".sidebar.metronome .toggle").onclick = metronome;
+
 
 let setBPM = function () {
     let BPM = parseInt(prompt("Enter BPM:", Tone.Transport.bpm.value));
@@ -84,16 +112,7 @@ let setBPM = function () {
 
 document.querySelector(".sidebar.metronome .bpm").onclick = setBPM;
 
-function addKeyMap() {
-    guling.forEach(function (gulingtangan, index) {
-        let keyElement = document.createElement("p");
-        keyElement.innerText = keyArray[index];
-        keyElement.classList.add("keyMap");
-        gulingtangan.appendChild(keyElement);
-    });
-}
-
-function toggleKeyMap() {
+let toggleKeyMap = function () {
     let keyMapElements = document.querySelectorAll(".keyMap");
     if (isKeyMapShown) {
         keyMapElements.forEach(function (element, index) {
@@ -107,9 +126,30 @@ function toggleKeyMap() {
         });
         isKeyMapShown = true;
     }
-
 }
+
+function addKeyMap() {
+    guling.forEach(function (gulingtangan, index) {
+        let keyElement = document.createElement("p");
+        keyElement.innerText = keyArray[index];
+        keyElement.classList.add("keyMap");
+        gulingtangan.appendChild(keyElement);
+    });
+    isKeyMapShown = !isKeyMapShown;
+    toggleKeyMap();
+}
+
+document.querySelector(".sidebar.settings .showKeyMap").onclick = toggleKeyMap;
 
 function setTimeline(measure, beat, sixteenth) {
     document.querySelector(".timeline-value").innerText = `${measure}:${beat}:${sixteenth}`;
 }
+
+//INITALIZE
+addKeyMap();
+//LOAD GULINGTANGAN SOUND
+const gulingtangan = new Tone.Sampler({
+    urls: urlsList,
+    release: 1,
+    baseUrl: PATH,
+}).toDestination();
