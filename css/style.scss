@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Montserrat:wght@200&display=swap");
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;700;900&display=swap');
 
 :root {
   //COLOR SCHEME FROM TYPEMONKEY
@@ -23,7 +23,7 @@ html {
 }
 
 body {
-  font-family: Montserrat;
+  font-family: 'Lato', sans-serif;
   padding: 0;
   margin: 0;
   width: 100vw;
@@ -56,8 +56,8 @@ body {
   cursor: pointer;
   padding: 1em 2em;
   outline: 0;
-  background: var(--text-color);
-  color: var(--bg-color);
+  background: var(--sub-color);
+  color: var(--text-color);
   appearance: none;
 }
 .select select::-ms-expand {
@@ -97,12 +97,13 @@ button {
   outline: none;
   padding: 1em 2em;
   border: none;
-  color: var(--bg-color);
+  color: var(--sub-color);
 }
 button:hover{
   transform: scale(1.1);
   transform-origin: center;
   filter: brightness(1.2);
+  color: var(--text-color);
 }
 .record {
   color: var(--colorful-error-color);
@@ -114,13 +115,27 @@ header {
 }
 
 #title {
-  font-size: 1.6rem;
-  font-weight: bolder;
+  font-size: 1rem;
+  font-weight: 300;
+  text-transform: uppercase;
   margin: auto;
   text-align: center;
-  color: var(--main-color);
+  display: flex;
 }
 
+#title > div{
+  margin: auto;
+  text-align: center;
+}
+
+#title span{
+  border: 1px var(--main-color) solid;
+  padding: 0.2em 0.4em;
+  margin: auto 0.4em;
+  font-size: 2rem;
+  font-weight: 800;
+  color: var(--main-color);
+}
 nav {
   display: flex;
   padding: 0 2em;
@@ -175,7 +190,7 @@ a {
   fill: var(--caret-color);
 }
 .icons {
-  height: 4em;
+  height: 2em;
   color: var(--sub-color);
   fill: var(--sub-color);
   margin: auto;
@@ -203,7 +218,8 @@ main {
 
 .controlbar {
   padding: 2em;
-  background-color: var(--sub-color);
+  background-color: var(--bg-color);
+  box-shadow: 4px -4px 6px rgba(0, 0, 0, 0.2);
 }
 .controlbar nav{
   justify-content: s;
@@ -220,9 +236,9 @@ main {
   min-width: 6em;
   text-align: center;
   font-weight: bold;
-  background-color: var(--text-color);
+  background-color: var(--sub-color);
   border:rgba(0, 0, 0, 0.2) 1px solid;
-  color: var(--bg-color);
+  color: var(--text-color);
   font-size: 1.5rem;
   margin: auto;
   padding: 0 2em;
