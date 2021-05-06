@@ -347,7 +347,6 @@
           </div>
         </div>
       </div>
-
       <div class="sidebar metronome">
         <div class="toggle">On</div>
         <div class="bpm">BPM</div>
@@ -359,58 +358,64 @@
       <div class="sidebar settings">
         <div class="editKeyMap">Edit Keyboard Binding</div>
         <div class="showKeyMap">Display Keyboard Binding</div>
-        <div class="showKeyMap">Include more notes</div>
+        <div class="showOctave">Include more notes</div>
       </div>
     </main>
 
     <div class="controlbar">
       <nav>
-        <div class="select">
-          <svg
-            class="icons"
-            version="1.1"
-            id="Capa_1"
-            xmlns="http://www.w3.org/2000/svg"
-            xmlns:xlink="http://www.w3.org/1999/xlink"
-            viewBox="0 0 512 512"
-            xml:space="preserve"
-          >
-            <g>
+        <div class="left-col">
+          <div class="select">
+            <svg
+              class="icons"
+              version="1.1"
+              id="Capa_1"
+              xmlns="http://www.w3.org/2000/svg"
+              xmlns:xlink="http://www.w3.org/1999/xlink"
+              viewBox="0 0 512 512"
+              xml:space="preserve"
+            >
               <g>
-                <path
-                  d="M464,0H48C21.49,0,0,21.49,0,48v416c0,26.51,21.49,48,48,48h416c26.51,0,48-21.49,48-48V48C512,21.49,490.51,0,464,0z
+                <g>
+                  <path
+                    d="M464,0H48C21.49,0,0,21.49,0,48v416c0,26.51,21.49,48,48,48h416c26.51,0,48-21.49,48-48V48C512,21.49,490.51,0,464,0z
 			 M112,480H48c-8.837,0-16-7.163-16-16V48c0-8.837,7.163-16,16-16h32v240c0,8.837,7.163,16,16,16h16V480z M240,480h-96V288h16
 			c8.837,0,16-7.163,16-16V32h32v240c0,8.837,7.163,16,16,16h16V480z M368,480h-96V288h16c8.837,0,16-7.163,16-16V32h32v240
 			c0,8.837,7.163,16,16,16h16V480z M480,464c0,8.837-7.163,16-16,16h-64V288h16c8.837,0,16-7.163,16-16V32h32
 			c8.837,0,16,7.163,16,16V464z"
-                />
+                  />
+                </g>
               </g>
-            </g>
-            <g></g>
-            <g></g>
-            <g></g>
-            <g></g>
-            <g></g>
-            <g></g>
-            <g></g>
-            <g></g>
-            <g></g>
-            <g></g>
-            <g></g>
-            <g></g>
-            <g></g>
-            <g></g>
-            <g></g>
-          </svg>
+              <g></g>
+              <g></g>
+              <g></g>
+              <g></g>
+              <g></g>
+              <g></g>
+              <g></g>
+              <g></g>
+              <g></g>
+              <g></g>
+              <g></g>
+              <g></g>
+              <g></g>
+              <g></g>
+              <g></g>
+            </svg>
 
-          <select name="instruments" id="instruments">
-            <option>Gulingtangan</option>
-            <option>Piano</option>
-            <option>E. Piano</option>
-          </select>
-          <div class="select_arrow"></div>
+            <select name="instruments" id="instruments">
+              <option>Gulingtangan</option>
+              <option>Piano</option>
+              <option>E. Piano</option>
+            </select>
+            <div class="select_arrow"></div>
+          </div>
+          <div class="octave">
+            <i class="fa fa-2x fa-chevron-left left" aria-hidden="true"></i>
+            <div class="octave-val">4</div>
+            <i class="fa fa-2x fa-chevron-right right" aria-hidden="true"></i>
+          </div>
         </div>
-
         <div class="right-col">
           <div class="playback-panel">
             <button class="record"><i class="fas fa-2x fa-circle"></i></button>

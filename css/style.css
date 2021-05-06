@@ -154,6 +154,7 @@ header {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  cursor: pointer;
 }
 
 #title > div {
@@ -168,6 +169,11 @@ header {
   font-size: 2rem;
   font-weight: 800;
   color: var(--main-color);
+}
+
+#title:hover span {
+  background-color: var(--main-color);
+  color: var(--bg-color);
 }
 
 nav {
@@ -329,6 +335,7 @@ main {
           justify-content: s;
 }
 
+.left-col,
 .right-col {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -378,6 +385,48 @@ main {
 .sidebar > div:hover {
   background-color: var(--main-color);
   color: var(--bg-color);
+}
+
+.octave {
+  margin-left: 2em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+}
+
+.octave .left,
+.octave .right {
+  padding: 0.4em;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.octave .left {
+  left: 0;
+}
+
+.octave .right {
+  right: 0;
+}
+
+.octave-val {
+  font-size: 1.2rem;
+  font-weight: 800;
+  margin: auto;
+  padding: 0.4em 1em;
+  border: 1px solid var(--sub-color);
+}
+
+.octave .left:hover,
+.octave .right:hover {
+  -webkit-transform: scale(1.1);
+          transform: scale(1.1);
+  -webkit-transform-origin: center;
+          transform-origin: center;
+  color: var(--main-color);
 }
 
 .keyMap {

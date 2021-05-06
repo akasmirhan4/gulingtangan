@@ -1,9 +1,13 @@
 let PATH = './assets/gulingtangan-notes/';
 let FILE_EXTENSION = '.wav';
 let sustain = 0;
+let dOctave = 0;
 //declaration
 let guling = document.querySelectorAll(".pots:not(.empty)");
 let keyAreaClicked = null;
+
+let isOctaveShown = false;
+hideOctave();
 
 let keyArray = ["s", "d", "g", "h", "j", "z", "x", "c", "v", "b", "n", "m", ","];
 
@@ -11,6 +15,8 @@ let urlsList = new Object;
 let keyNoteMap = new Object;
 guling.forEach(function (gulingtangan, index) {
     let note = gulingtangan.id;
+    let currentOctave = parseInt(note.slice(-1)) + dOctave;
+    note = note.slice(0, -1) + currentOctave;
 
     // keyNoteMap FOR MAPPING KEYBOARD KEYS TO ITS NOTE, second index indicate isKeyPressed (restrict user from holding the key button)
     keyNoteMap[keyArray[index]] = [note, false];
@@ -20,24 +26,31 @@ guling.forEach(function (gulingtangan, index) {
 
     //MOUSE CLICK EVENT LISTENER
     gulingtangan.addEventListener("mousedown", function () {
-        playNote(note);
+        let note = this.id;
         document.getElementById(note).classList.add("darken");
+        playNote(note);
     });
 })
 document.addEventListener("mouseup", function () {
     document.querySelectorAll(".darken").forEach((el) => el.classList.remove("darken"));
+    hideSideBar();
 });
 
 function playNote(note) {
-    // Get instrument
-    // let instrument
-    gulingtangan.triggerAttackRelease(note, sustain);
     // Add animation
     let id = note;
     document.getElementById(id).classList.remove("shake");
     window.requestAnimationFrame(function () {
         document.getElementById(id).classList.add("shake");
     });
+
+    // Get instrument
+    // let instrument
+    let currentOctave = parseInt(note.slice(-1)) + dOctave;
+    note = note.slice(0, -1) + currentOctave;
+    gulingtangan.triggerAttackRelease(note, sustain);
+
+
 }
 
 //KEYBOARD KEYS EVENT LISTENER
@@ -67,13 +80,13 @@ function logKey(e) {
 }
 
 document.addEventListener("keyup", logKeyPressed);
-document.addEventListener("mousedown", function () {
+document.addEventListener("mousedown", function (event) {
     if (keyAreaClicked) {
         keyAreaClicked.classList.remove('active');
     }
     keyAreaClicked = null;
-    console.log(keyAreaClicked);
 });
+
 function logKeyPressed(e) {
     if (keyNoteMap[e.key]) {
         if (keyNoteMap[e.key][1]) {
@@ -104,14 +117,7 @@ for (let i = 0; i < rightNavElements.length; i++) {
     rightNavElements[i].addEventListener('click', function () {
         // Allow uncheck on right nav_links
         let currentWasChecked = this.wasChecked;
-        for (let i = 0; i < rightNavElements.length; i++) {
-            let element = rightNavElements[i];
-            if (element.wasChecked) {
-                element.wasChecked = false;
-            }
-            let className = element.value;
-            document.querySelector('.sidebar.' + className).style.display = 'none';
-        }
+        hideSideBar();
         if (currentWasChecked) {
             this.checked = false;
             this.wasChecked = false;
@@ -119,15 +125,28 @@ for (let i = 0; i < rightNavElements.length; i++) {
             document.querySelector('.sidebar.' + className).style.display = 'none';
         }
         else {
-            this.checked = true;
-            this.wasChecked = true;
-            let className = this.value;
-            document.querySelector('.sidebar.' + className).style.display = 'block';
+            showSideBar(this);
         }
-
-
-
     });
+}
+
+function hideSideBar() {
+    for (let i = 0; i < rightNavElements.length; i++) {
+        let element = rightNavElements[i];
+        element.checked = false;
+        if (element.wasChecked) {
+            element.wasChecked = false;
+        }
+        let className = element.value;
+        document.querySelector('.sidebar.' + className).style.display = 'none';
+    }
+};
+
+function showSideBar(settingElement) {
+    settingElement.checked = true;
+    settingElement.wasChecked = true;
+    let className = settingElement.value;
+    document.querySelector('.sidebar.' + className).style.display = 'block';
 }
 
 function uncheckRightNavLinks() {
@@ -136,9 +155,6 @@ function uncheckRightNavLinks() {
         element.wasChecked = false;
         element.checked = false;
     }
-}
-
-function showSideBar() {
 }
 
 function hideLoader() {
@@ -184,11 +200,6 @@ let playRecording = function () {
     //EACH INTERVAL WITHIN THE ARRAY PLAY BACK AS NOTES
     //AT END OF RECORDING STOP AND START BACK TO BEGINNGING BUT PAUSED
 }
-
-function setKeyMap(element) {
-    console.log(element);
-}
-
 
 function setKeyMapArea() {
     guling.forEach(function (element, index) {
@@ -261,4 +272,52 @@ function setKey(e) {
     keyNoteMap[oldKeyMap] = null;
     keyNoteMap[newKeyMap] = [note, false];
     element.nextSibling.innerText = newKeyMap;
+};
+
+function hideKeyMapArea() {
+    let keyAreaElements = document.querySelectorAll(".keyMapArea");
+    keyAreaElements.forEach((element, index) => {
+        isKeyMapAreaShown = false;
+        element.style.display = "none";
+    });
+    if (!bufferKeyMapFlag) {
+        hideKeyMap();
+    }
+    isKeyMapShown = bufferKeyMapFlag;
+};
+
+function hideOctave() {
+    let element = document.querySelector(".octave");
+    element.style.display = "none";
+    isOctaveShown = false;
+    dOctave = 0;
+};
+
+function showOctave() {
+    let element = document.querySelector(".octave");
+    element.style.display = "flex";
+    isOctaveShown = true;
+};
+
+
+let toggleOctave = function () {
+    let element = document.querySelector(".octave");
+    if (isOctaveShown) {
+        hideOctave();
+    }
+    else {
+        showOctave();
+    }
+};
+
+document.querySelector(".showOctave").onclick = toggleOctave;
+
+document.querySelector(".octave .left").onclick = () => {
+    dOctave--;
+    document.querySelector(".octave-val").innerText = 4 + dOctave;
+}
+
+document.querySelector(".octave .right").onclick = () => {
+    dOctave++;
+    document.querySelector(".octave-val").innerText = 4 + dOctave;
 }
