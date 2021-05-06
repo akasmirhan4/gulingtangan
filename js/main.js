@@ -5,6 +5,7 @@ let currentBeat = -1;
 let isKeyMapShown = false;
 let isMetronomePlayed = false;
 let isPlayed = false;
+let isWindowLoaded = false;
 
 //SETTINGS
 let MIN_BPM = 10;
@@ -147,9 +148,18 @@ function setTimeline(measure, beat, sixteenth) {
 
 //INITALIZE
 addKeyMap();
+
 //LOAD GULINGTANGAN SOUND
 const gulingtangan = new Tone.Sampler({
     urls: urlsList,
     release: 1,
     baseUrl: PATH,
+    onload: () => {
+        if (isWindowLoaded) {
+            hideLoader();
+        }
+        else {
+            console.log("waiting for graphics assets to load...");
+        }
+    }
 }).toDestination();

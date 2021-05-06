@@ -61,10 +61,15 @@ function logKeyPressed(e) {
         }
     }
 }
-let loader = document.getElementById("loader");
 
 window.addEventListener("load", function () {
-    loader.classList.add("hidden");
+    if (!gulingtangan.loaded) {
+        console.log("waiting for sound assets to load...");
+    }
+    else {
+        hideLoader();
+    }
+    isWindowLoaded = true;
 })
 
 
@@ -112,4 +117,9 @@ function uncheckRightNavLinks() {
 }
 
 function showSideBar() {
+}
+
+function hideLoader() {
+    let loader = document.getElementById("loader");
+    loader.classList.add("hidden");
 }
