@@ -37,7 +37,6 @@ body {
 .main {
   display: flex;
   flex-direction: column;
-  flex-grow: 1;
   margin: auto;
 }
 
@@ -206,7 +205,9 @@ a {
 main {
   position: relative;
   display: flex;
+  flex-direction: column;
   flex-grow: 1;
+  justify-content: space-around;
 }
 .pots {
   width: clamp(56px, 10vw, 30vh);
@@ -300,7 +301,7 @@ main {
   color: var(--bg-color);
 }
 .octave {
-  margin-left:2em;
+  margin-left: 2em;
   display: flex;
   justify-content: center;
 }
@@ -316,12 +317,26 @@ main {
 .octave .right {
   right: 0;
 }
-.octave-val{
+.octave-val,
+.reset {
   font-size: 1.2rem;
   font-weight: 800;
   margin: auto;
   padding: 0.4em 1em;
   border: 1px solid var(--sub-color);
+}
+.reset {
+  position: absolute;
+  bottom:5%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+  cursor: pointer;
+  margin-bottom: 4em;
+}
+.reset:hover {
+  background-color: var(--text-color);
+  color: var(--bg-color);
 }
 .octave .left:hover,
 .octave .right:hover {

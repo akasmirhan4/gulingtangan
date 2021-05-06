@@ -9,7 +9,7 @@ let keyAreaClicked = null;
 let isOctaveShown = false;
 hideOctave();
 
-let keyArray = ["s", "d", "g", "h", "j", "z", "x", "c", "v", "b", "n", "m", ","];
+let defaultKeyArray = ["s", "d", "g", "h", "j", "z", "x", "c", "v", "b", "n", "m", ","];
 
 let urlsList = new Object;
 let keyNoteMap = new Object;
@@ -19,7 +19,7 @@ guling.forEach(function (gulingtangan, index) {
     note = note.slice(0, -1) + currentOctave;
 
     // keyNoteMap FOR MAPPING KEYBOARD KEYS TO ITS NOTE, second index indicate isKeyPressed (restrict user from holding the key button)
-    keyNoteMap[keyArray[index]] = [note, false];
+    keyNoteMap[defaultKeyArray[index]] = [note, false];
 
     // urlsList FOR MAPPING NOTE TO ITS URL
     urlsList[note] = note + FILE_EXTENSION;
@@ -58,7 +58,7 @@ document.addEventListener("keydown", keyhandler);
 
 function keyhandler(e) {
     if (keyAreaClicked) {
-        setKey(e);
+        setKey(keyAreaClicked.parentElement.id, e.key);
         keyAreaClicked.classList.remove('active');
         keyAreaClicked = null;
     }
@@ -213,6 +213,7 @@ setKeyMapArea();
 
 function showKeyMapArea() {
     bufferKeyMapFlag = isKeyMapShown;
+    document.querySelector(".reset").style.display = "block";
     showKeyMap();
     let keyAreaElements = document.querySelectorAll(".keyMapArea");
     keyAreaElements.forEach((element, index) => {
@@ -222,6 +223,8 @@ function showKeyMapArea() {
 }
 function hideKeyMapArea() {
     let keyAreaElements = document.querySelectorAll(".keyMapArea");
+    document.querySelector(".reset").style.display = "none";
+
     keyAreaElements.forEach((element, index) => {
         isKeyMapAreaShown = false;
         element.style.display = "none";
@@ -255,13 +258,13 @@ document.querySelectorAll(".keyMapArea").forEach((element) => {
         keyAreaClicked = element;
     });
 
-    element.addEventListener("keydown", setKey);
+    element.addEventListener("keydown", function (e) {
+        setKey(element.parentElement.id, e.key);
+    });
 });
-function setKey(e) {
-    let element = keyAreaClicked;
-    let note = element.parentElement.id;
-    let oldKeyMap = element.nextSibling.innerText;
-    let newKeyMap = e.key;
+function setKey(note, key) {
+    let oldKeyMap = document.querySelector(`#${note} .keyMap`).innerText;
+    let newKeyMap = key;
     // set empty to oldKeyMap
     let bindingNote = keyNoteMap[newKeyMap];
     if (bindingNote) {
@@ -271,11 +274,13 @@ function setKey(e) {
     }
     keyNoteMap[oldKeyMap] = null;
     keyNoteMap[newKeyMap] = [note, false];
-    element.nextSibling.innerText = newKeyMap;
+    document.querySelector(`#${note} .keyMap`).innerText = newKeyMap;
 };
 
 function hideKeyMapArea() {
     let keyAreaElements = document.querySelectorAll(".keyMapArea");
+    document.querySelector(".reset").style.display = "none";
+
     keyAreaElements.forEach((element, index) => {
         isKeyMapAreaShown = false;
         element.style.display = "none";
@@ -284,7 +289,7 @@ function hideKeyMapArea() {
         hideKeyMap();
     }
     isKeyMapShown = bufferKeyMapFlag;
-};
+}
 
 function hideOctave() {
     let element = document.querySelector(".octave");
@@ -321,3 +326,11 @@ document.querySelector(".octave .right").onclick = () => {
     dOctave++;
     document.querySelector(".octave-val").innerText = 4 + dOctave;
 }
+
+let resetKeyBind = function () {
+    guling.forEach(function (gulingtangan, index) {
+        let note = gulingtangan.id;
+        setKey(note,defaultKeyArray[index]);
+    });
+};
+document.querySelector(".reset").onclick = resetKeyBind;

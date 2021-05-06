@@ -44,9 +44,6 @@ body {
   -webkit-box-direction: normal;
       -ms-flex-direction: column;
           flex-direction: column;
-  -webkit-box-flex: 1;
-      -ms-flex-positive: 1;
-          flex-grow: 1;
   margin: auto;
 }
 
@@ -263,9 +260,15 @@ main {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   -webkit-box-flex: 1;
       -ms-flex-positive: 1;
           flex-grow: 1;
+  -ms-flex-pack: distribute;
+      justify-content: space-around;
 }
 
 .pots {
@@ -412,12 +415,29 @@ main {
   right: 0;
 }
 
-.octave-val {
+.octave-val,
+.reset {
   font-size: 1.2rem;
   font-weight: 800;
   margin: auto;
   padding: 0.4em 1em;
   border: 1px solid var(--sub-color);
+}
+
+.reset {
+  position: absolute;
+  bottom: 5%;
+  left: 50%;
+  -webkit-transform: translateX(-50%);
+          transform: translateX(-50%);
+  display: none;
+  cursor: pointer;
+  margin-bottom: 4em;
+}
+
+.reset:hover {
+  background-color: var(--text-color);
+  color: var(--bg-color);
 }
 
 .octave .left:hover,

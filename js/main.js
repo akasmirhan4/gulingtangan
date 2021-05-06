@@ -142,7 +142,7 @@ let toggleKeyMap = function () {
 function setKeyMap() {
     guling.forEach(function (gulingtangan, index) {
         let keyElement = document.createElement("p");
-        keyElement.innerText = keyArray[index];
+        keyElement.innerText = defaultKeyArray[index];
         keyElement.classList.add("keyMap");
         gulingtangan.appendChild(keyElement);
     });
