@@ -139,7 +139,7 @@ let toggleKeyMap = function () {
     }
 }
 
-function addKeyMap() {
+function setKeyMap() {
     guling.forEach(function (gulingtangan, index) {
         let keyElement = document.createElement("p");
         keyElement.innerText = keyArray[index];
@@ -157,7 +157,7 @@ function setTimeline(measure, beat, sixteenth) {
 }
 
 //INITALIZE
-addKeyMap();
+setKeyMap();
 
 //LOAD GULINGTANGAN SOUND
 const gulingtangan = new Tone.Sampler({

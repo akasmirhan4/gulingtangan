@@ -3,7 +3,7 @@ let FILE_EXTENSION = '.wav';
 let sustain = 0;
 //declaration
 let guling = document.querySelectorAll(".pots:not(.empty)");
-
+let keyAreaClicked = null;
 
 let keyArray = ["s", "d", "g", "h", "j", "z", "x", "c", "v", "b", "n", "m", ","];
 
@@ -30,7 +30,7 @@ document.addEventListener("mouseup", function () {
 
 function playNote(note) {
     // Get instrument
-    let instrument
+    // let instrument
     gulingtangan.triggerAttackRelease(note, sustain);
     // Add animation
     let id = note;
@@ -41,7 +41,20 @@ function playNote(note) {
 }
 
 //KEYBOARD KEYS EVENT LISTENER
-document.addEventListener("keydown", logKey);
+document.addEventListener("keydown", keyhandler);
+
+function keyhandler(e) {
+    if (keyAreaClicked) {
+        setKey(e);
+        keyAreaClicked.classList.remove('active');
+        keyAreaClicked = null;
+    }
+    else {
+        logKey(e);
+    }
+
+}
+
 function logKey(e) {
     if (keyNoteMap[e.key]) {
         if (!keyNoteMap[e.key][1]) {
@@ -54,6 +67,13 @@ function logKey(e) {
 }
 
 document.addEventListener("keyup", logKeyPressed);
+document.addEventListener("mousedown", function () {
+    if (keyAreaClicked) {
+        keyAreaClicked.classList.remove('active');
+    }
+    keyAreaClicked = null;
+    console.log(keyAreaClicked);
+});
 function logKeyPressed(e) {
     if (keyNoteMap[e.key]) {
         if (keyNoteMap[e.key][1]) {
@@ -154,7 +174,7 @@ let startRecording = function () {
             //START THE CLOCK FROM THE CURRENT TIME
             setTimeline(measure, beat, sixteenth);
             //ANY USER INPUT WILL BE MAPPED INTO AN ARRAY/OBJECT
-            
+
         }
     }, 60 / Tone.Transport.bpm.value * 1000);
 }
@@ -214,6 +234,31 @@ let toggleKeyMapArea = function () {
 }
 document.querySelector(".record").onclick = startRecording;
 document.querySelector(".editKeyMap").onclick = toggleKeyMapArea;
-document.querySelector(".keyMapArea").addEventListener("onClick", () => {
-    console.log(this);
+document.querySelectorAll(".keyMapArea").forEach((element) => {
+    element.addEventListener("mousedown", (event) => {
+        if (keyAreaClicked) {
+            keyAreaClicked.classList.remove('active');
+        }
+        event.stopPropagation();
+        element.classList.add('active');
+        keyAreaClicked = element;
+    });
+
+    element.addEventListener("keydown", setKey);
 });
+function setKey(e) {
+    let element = keyAreaClicked;
+    let note = element.parentElement.id;
+    let oldKeyMap = element.nextSibling.innerText;
+    let newKeyMap = e.key;
+    // set empty to oldKeyMap
+    let bindingNote = keyNoteMap[newKeyMap];
+    if (bindingNote) {
+        let clashedKey = document.querySelector(`#${bindingNote[0]} .keyMap`);
+        console.error(`key bind clashed. Please enter a new key bind on the clashed note:\n${keyNoteMap[newKeyMap][0]}`);
+        clashedKey.innerText = "";
+    }
+    keyNoteMap[oldKeyMap] = null;
+    keyNoteMap[newKeyMap] = [note, false];
+    element.nextSibling.innerText = newKeyMap;
+}

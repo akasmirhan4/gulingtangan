@@ -295,11 +295,24 @@ main {
   position: absolute;
 }
 
-.keyMapArea:hover {
+.keyMapArea.active {
+  background-color: rgba(255, 255, 255, 0.8);
+  -webkit-transform: translateY(-0.4em);
+          transform: translateY(-0.4em);
+}
+
+.keyMapArea.active + .keyMap {
+  margin: auto;
+  text-align: center;
+  font-size: 5rem;
+  color: var(--bg-color);
+}
+
+.keyMapArea:not(.active):hover {
   background-color: rgba(255, 255, 255, 0.2);
 }
 
-.keyMapArea:hover + .keyMap {
+.keyMapArea:not(.active):hover + .keyMap {
   font-size: 1.5rem;
 }
 
