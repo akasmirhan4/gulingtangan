@@ -52,21 +52,25 @@ body {
 
 .select {
   position: relative;
-  display: inline-block;
-  width: 20em;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  width: 16em;
   margin: auto 0;
 }
 
 .select select {
+  margin-left: 1em;
   font-family: inherit;
   font-weight: bolder;
   display: inline-block;
-  font-size: 1rem;
+  font-size: 1.2rem;
   width: 100%;
   cursor: pointer;
-  padding: 1em 2em;
+  padding: 0.4em 1em;
   outline: 0;
-  background: var(--sub-color);
+  border: 1px solid var(--sub-color);
+  background-color: unset;
   color: var(--text-color);
   -webkit-appearance: none;
      -moz-appearance: none;
@@ -93,12 +97,11 @@ body {
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
-  padding: 1em 2em;
 }
 
 .select_arrow {
   position: absolute;
-  top: 1.5em;
+  top: 1em;
   right: 1em;
   pointer-events: none;
   border-style: solid;
@@ -220,8 +223,7 @@ a {
 }
 
 .nav_links label {
-  padding: 1em;
-  margin: 1em auto;
+  padding: 1em 1em 0 1em;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -261,8 +263,7 @@ main {
 }
 
 .pots {
-  width: 10vw;
-  max-width: 30vh;
+  width: clamp(56px, 10vw, 30vh);
   margin: 0.4em;
 }
 
@@ -285,7 +286,7 @@ main {
 }
 
 .controlbar {
-  padding: 2em;
+  padding: 1em;
   background-color: var(--bg-color);
   -webkit-box-shadow: 4px -4px 6px rgba(0, 0, 0, 0.2);
           box-shadow: 4px -4px 6px rgba(0, 0, 0, 0.2);
@@ -314,12 +315,15 @@ main {
   min-width: 6em;
   text-align: center;
   font-weight: bold;
-  background-color: var(--sub-color);
-  border: rgba(0, 0, 0, 0.2) 1px solid;
+  border: 1px solid var(--sub-color);
   color: var(--text-color);
   font-size: 1.5rem;
   margin: auto;
-  padding: 0 2em;
+  padding: 0.4em 0.6em;
+}
+
+.timeline-value {
+  margin: 0;
 }
 
 .sidebar {

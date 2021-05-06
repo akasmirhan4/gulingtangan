@@ -23,10 +23,10 @@ guling.forEach(function (gulingtangan, index) {
         playNote(note);
         document.getElementById(note).classList.add("darken");
     });
-    gulingtangan.addEventListener("mouseup", function () {
-        document.getElementById(note).classList.remove("darken");
-    });
 })
+document.addEventListener("mouseup", function () {
+    document.querySelectorAll(".darken").forEach((el) => el.classList.remove("darken"));
+});
 
 function playNote(note) {
     gulingtangan.triggerAttackRelease(note, sustain);
