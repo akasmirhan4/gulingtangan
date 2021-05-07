@@ -29,6 +29,7 @@ guling.forEach(function (gulingtangan, index) {
         let note = this.id;
         document.getElementById(note).classList.add("darken");
         playNote(note);
+        animateNote(note);
     });
 })
 document.addEventListener("mouseup", function () {
@@ -36,14 +37,17 @@ document.addEventListener("mouseup", function () {
     hideSideBar();
 });
 
-function playNote(note) {
+function animateNote(note) {
     // Add animation
     let id = note;
-    document.getElementById(id).classList.remove("shake");
-    window.requestAnimationFrame(function () {
-        document.getElementById(id).classList.add("shake");
-    });
-
+    if (document.getElementById(id)) {
+        document.getElementById(id).classList.remove("shake");
+        window.requestAnimationFrame(function () {
+            document.getElementById(id).classList.add("shake");
+        });
+    }
+}
+function playNote(note) {
     // Get instrument
     // let instrument
     let currentOctave = parseInt(note.slice(-1)) + dOctave;
@@ -73,6 +77,7 @@ function logKey(e) {
         if (!keyNoteMap[e.key][1]) {
             let note = keyNoteMap[e.key][0];
             playNote(note);
+            animateNote(note);
             keyNoteMap[e.key][1] = true;
             document.getElementById(note).classList.add("darken");
         }
@@ -330,7 +335,18 @@ document.querySelector(".octave .right").onclick = () => {
 let resetKeyBind = function () {
     guling.forEach(function (gulingtangan, index) {
         let note = gulingtangan.id;
-        setKey(note,defaultKeyArray[index]);
+        setKey(note, defaultKeyArray[index]);
     });
 };
 document.querySelector(".reset").onclick = resetKeyBind;
+
+document.querySelectorAll(".sidebar.songs div").forEach((songElement) => {
+
+    songElement.onclick = function (e) {
+        currentSong = this.innerText;
+        loadSong(currentSong).then(function (loadedSong) {
+            songTiming = getMidi(loadedSong);
+        });
+
+    };
+});

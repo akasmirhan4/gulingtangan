@@ -1,5 +1,7 @@
 let currentMeasure = -1;
 let currentBeat = -1;
+let currentSong = null;
+let songTiming = null;
 
 //FLAGS
 let isKeyMapShown = false;
@@ -12,7 +14,11 @@ let bufferKeyMapFlag;
 //SETTINGS
 let MIN_BPM = 10;
 let MAX_BPM = 200;
-let TIMELINE_INTERVAL = "32n";
+let TIMELINE_INTERVAL = "16n";
+let INIT_BPM = 100;
+let TIME_STEP = 64;
+
+Tone.Transport.bpm.value = INIT_BPM;
 
 //LOAD SOUNDS
 const tick = new Tone.Player("./assets/tick.wav").toDestination();
@@ -25,9 +31,9 @@ Tone.Transport.scheduleRepeat((time) => {
     //READ CURRENT TIME(MEASURE:BEAT:SIXTEENTH)
     let position = Tone.Transport.position;
     let musicTime = position.split(':');
-    let measure = parseInt(musicTime[0]);
-    let beat = parseInt(musicTime[1]);
-    let sixteenth = parseInt(musicTime[2]);
+    let measure = Math.round(musicTime[0]);
+    let beat = Math.round(musicTime[1]);
+    let sixteenth = Math.round(musicTime[2]);
     setTimeline(measure, beat, sixteenth);
 
     //MAKE TICK AND TOCK
@@ -43,6 +49,21 @@ Tone.Transport.scheduleRepeat((time) => {
             console.log('tock');
         }
     }
+    let currentTime = measure * TIME_STEP + beat * TIME_STEP / 4 + sixteenth * TIME_STEP / 16;
+    // Play song
+    if (currentSong) {
+        if (songTiming[currentTime]) {
+
+            let notes = songTiming[currentTime];
+            notes.forEach((note) => {
+                playNote(note);
+                animateNote(note);
+            });
+            console.log(`${currentTime} : ${notes}`);
+        }
+
+    }
+
 }, TIMELINE_INTERVAL);
 
 let metronome = function () {
@@ -115,14 +136,14 @@ let setBPM = function () {
 
 document.querySelector(".sidebar.metronome .bpm").onclick = setBPM;
 
-function hideKeyMap(){
+function hideKeyMap() {
     let keyMapElements = document.querySelectorAll(".keyMap");
     keyMapElements.forEach(function (element, index) {
         element.style.display = "none";
     });
     isKeyMapShown = false;
 };
-function showKeyMap(){
+function showKeyMap() {
     let keyMapElements = document.querySelectorAll(".keyMap");
     keyMapElements.forEach(function (element, index) {
         element.style.display = "block";
@@ -173,3 +194,55 @@ const gulingtangan = new Tone.Sampler({
         }
     }
 }).toDestination();
+
+// IMPORT MIDI
+let SONG_BASEURL = "./assets/songs/";
+
+async function loadSong(songName) {
+    let url = SONG_BASEURL + songName + ".mid";
+    let midi = await Midi.fromUrl(url);
+    return midi;
+}
+
+function getMidi(midi) {
+    let bpm = midi.header.tempos[0].bpm;
+    let timeStep = 60 / bpm / (TIME_STEP / 4);
+    let nNotes = 0;
+    let track = null;
+    let timingObject = new Object();
+    midi.tracks.forEach((currentTrack, index) => {
+        let notes = currentTrack.notes;
+        for (let i = 0; i < notes.length; i++) {
+            let note = notes[i].name;
+            let noteOctave = parseInt(note.slice(-1));
+            let pitch = note.slice(0, -1);
+            switch (pitch) {
+                case "C#":
+                    pitch = "Db";
+                    break;
+                case "D#":
+                    pitch = "Eb";
+                    break;
+                case "F#":
+                    pitch = "Gb";
+                    break;
+                case "G#":
+                    pitch = "Ab";
+                    break;
+                case "A#":
+                    pitch = "Bb";
+                    break;
+            }
+            note = pitch + noteOctave;
+            let time = Math.round(Number(notes[i].time) / timeStep);
+            // convert time to sixteenth
+            if (!timingObject[time]) {
+                timingObject[time] = [note];
+            }
+            else {
+                timingObject[time].push(note);
+            }
+        }
+    });
+    return timingObject;
+}
