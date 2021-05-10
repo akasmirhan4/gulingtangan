@@ -34,6 +34,29 @@ body {
   flex-direction: column;
 }
 
+.inProgress{
+  pointer-events: none;
+  color:var(--sub-color);
+}
+.inProgress::after{
+  pointer-events: unset;
+  height:80%;
+  width:100%;
+  cursor: progress !important;
+  background-color: rgba(255, 255, 255, 0.5);
+  line-height: 2em;
+  top:50%;
+  left:50%;
+  transform: translate(-50%,-50%);
+  color:var(--colorful-error-color);
+  font-weight: bold;
+  text-align: center;
+  font-size: 1.2rem;
+  position: absolute;
+  content: "In \a Progress";
+  white-space: pre;
+}
+
 .main {
   display: flex;
   flex-direction: column;
@@ -107,6 +130,9 @@ button:hover {
 }
 .record {
   color: var(--colorful-error-color);
+}
+.record.active {
+  text-shadow: 0 0 4px var(--colorful-error-color);
 }
 
 header {
@@ -185,6 +211,7 @@ a {
   flex-direction: column;
   text-align: center;
   cursor: pointer;
+  position:relative;
 }
 
 .nav_links label:hover,
